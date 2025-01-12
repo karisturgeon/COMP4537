@@ -1,0 +1,27 @@
+#buttonContainer button.visible {
+    width: 10em;
+    height: 5em;
+    margin: 0.5em; 
+    color: black;
+}
+
+#buttonContainer button.hidden {
+    width: 10em;
+    height: 5em;
+    margin: 0.5em; 
+    color: transparent;
+    position: absolute;
+}
+
+#buttonContainer button.revealed {
+    width: 10em;
+    height: 5em;
+    margin: 0.5em; 
+    color: black;
+    position: absolute;
+}
+
+label {
+    display: block;
+    margin: 0.5em;
+}
