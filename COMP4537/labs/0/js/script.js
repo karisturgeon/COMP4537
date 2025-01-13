@@ -1,4 +1,22 @@
+const Colours = [
+    "#7FFFD4", // Aquamarine
+    "#8A2BE2", // Blue Violet
+    "#6495ED", //Cornflower Blue
+    "#DC143C", //Crimson
+    "#FFD700", //Gold
+    "#ADFF2F", //Green Yellow
+    "#C71585", //Medium Violet Red
+    "40E0D0", //Turquoise
+    "#FF6347", //Tomato
+]
 
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 
 class Button {
     constructor(number, color, container) {
@@ -24,21 +42,17 @@ class Button {
         this.button.classList.add("hidden");
     }
 
-    revealNumber(){
+    revealNumber() {
         this.button.classList.remove("hidden");
         this.button.classList.add("revealed");
-        if (this.button) {
-            this.button.removeEventListener("click", () => {
-                this.revealNumber();
-            });
-        }
+        this.button.style.pointerEvents = "none";
     }
 
     makeClickable(handler) {
         if (this.button) {
-            this.button.addEventListener("click", () => handler(this));                   }
-    
-}
+            this.button.onclick = () => handler(this);
+        }
+    }
 }
 
 class Game {
@@ -61,9 +75,9 @@ class Game {
         this.container.innerHTML = "";
         this.buttons = [];
 
-
+        const shuffledColours = shuffleArray(Colours);
         for (let i = 1; i <= count; i++) {
-            const color = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+            const color = shuffledColours[i - 1];
             const button = new Button(i, color, this.container);
             button.createButton();
             this.buttons.push(button);
@@ -71,40 +85,41 @@ class Game {
     }
 
     shuffleButtons() {
-
         this.buttons.forEach(button => {
             button.hideNumber();
-            button.makeClickable();
-            const randomX = Math.random() * 100;
-            const randomY = Math.random() * 100;
-
+            button.makeClickable(this.playGame.bind(this));
+            const randomX = Math.random() * 90;
+            const randomY = Math.random() * 80 + 10;
             button.button.style.left = `${randomX}%`;
             button.button.style.top = `${randomY}%`;
         });
     }
 
     playGame(button) {
-        if(button.number === counter) {
+        if (button.number === this.counter) {
             button.revealNumber();
             this.counter++;
             if (this.counter > this.numButtons) {
                 alert(MESSAGES.win);
                 this.gameOver();
             }
-        }}
+        } else {
+            alert(MESSAGES.wrongOrder);
+            this.gameOver();
+        }
+    }
 
 
     gameOver() {
         this.buttons.forEach(button => {
             button.revealNumber();
-    });
-}
+        });
+    }
 }
 
 injectText();
 document.getElementById("go").addEventListener("click", () => {
     const count = parseInt(document.getElementById("numButtons").value, 0);
-
 
     if (!isNaN(count) && count >= 3 && count <= 7) {
         const game = new Game("buttonContainer");
@@ -121,7 +136,6 @@ function injectText() {
     if (instructionLabel) {
         instructionLabel.textContent = MESSAGES.instructions;
     }
-
     const goButton = document.getElementById("go");
     if (goButton) {
         goButton.textContent = MESSAGES.goButton;
