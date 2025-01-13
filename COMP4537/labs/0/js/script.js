@@ -4,7 +4,8 @@
  * ChatGPT was used to troubleshoot and bounce ideas off of for this Lab.
  */
 
-
+const MIN_BUTTONS = 3;
+const MAX_BUTTONS = 7;
 
 /**
  * Colours array for the buttons
@@ -38,38 +39,50 @@ function shuffleArray(array) {
 
 /**
  * The Button class
- * @param number the number of the button
- * @param color the color of the button
- * @param button the actually button element in the DOM
- * @returns a button object and appends it to the container
+ * Handles creation of buttons as well as their visibility
  */
 class Button {
-    constructor(number, color, container) {
+    constructor(number, color) {
         this.number = number;
         this.color = color;
         this.button = this.createButton();
     }
 
+
+    /**
+     * Creates the actually dom element button
+     * @returns a button element
+     */
     createButton() {
         const button = document.createElement("button");
-        button.innerHTML = this.number;
+        button.innerHTML = `${this.number}`;
 
         button.style.setProperty('--button-color', this.color);
         button.classList.add("visible");
         return button;
     }
 
+
+    /**
+     * Moves button's number from visible to hidden
+     */
     hideNumber() {
         this.button.classList.remove("visible");
         this.button.classList.add("hidden");
     }
 
+    /**
+     * Moves button's number from hidden to revealed
+     */
     revealNumber() {
         this.button.classList.remove("hidden");
         this.button.classList.add("revealed");
-        this.button.style.pointerEvents = "none";
     }
 
+    /**
+     * Assigns a click event handler to hte button
+     * @param {function} handler - A function that handles the click event.
+     */
     makeClickable(handler) {
         if (this.button) {
             this.button.onclick = () => handler(this);
@@ -80,7 +93,6 @@ class Button {
 
 /**
  * The Game class
- * Handles the game functions
  */
 class Game {
     constructor(containerId) {
@@ -90,6 +102,10 @@ class Game {
         this.counter = 1;
     }
 
+    /**
+     * Starts the game by creating n(number from the input) buttons and shuffling them after n seconds   
+     * @param {integer} count 
+     */
     startGame(count) {
         this.numButtons = count;
         this.createButtons(count);
@@ -98,6 +114,10 @@ class Game {
         }, 1000 * count);
     }
 
+    /**
+     * Creates the buttons and appends them to the game container
+     * @param {integer} count 
+     */
     createButtons(count) {
         this.container.innerHTML = "";
         this.buttons = [];
@@ -111,6 +131,9 @@ class Game {
         }
     }
 
+    /**
+     * Shuffles the buttons in the container, and makes them clickable
+     */
     shuffleButtons() {
         this.buttons.forEach(button => {
             button.hideNumber();
@@ -123,6 +146,11 @@ class Game {
         });
     }
 
+    /**
+     * Handles the game play logic
+     * Uses a counter to check if the buttons are clicked in the correct order
+     * @param {button} button 
+     */
     playGame(button) {
         if (button.number === this.counter) {
             button.revealNumber();
@@ -137,7 +165,9 @@ class Game {
         }
     }
 
-
+    /**
+     * Ends the game, calls revealNumber on all buttons (makes them unclickable and visible)
+     */
     gameOver() {
         this.buttons.forEach(button => {
             button.revealNumber();
@@ -145,21 +175,11 @@ class Game {
     }
 }
 
-injectText();
-document.getElementById("go").addEventListener("click", () => {
-    const count = parseInt(document.getElementById("numButtons").value, 0);
 
-    if (!isNaN(count) && count >= 3 && count <= 7) {
-        const game = new Game("buttonContainer");
-        game.startGame(count);
-    } else {
-        alert(MESSAGES.incorrectNumber);
-    }
-});
-
-
-
-function injectText() {
+/**
+ * Injects the instructions from the MESSSAGES object in user.js
+ */
+function injectTextInstructions() {
     const instructionLabel = document.getElementById("numButtonsLabel");
     if (instructionLabel) {
         instructionLabel.textContent = MESSAGES.instructions;
@@ -169,4 +189,22 @@ function injectText() {
         goButton.textContent = MESSAGES.goButton;
     }
 }
+
+
+
+/**
+ * Initalizes the app by injecting the text and starting the game
+ */
+injectTextInstructions();
+document.getElementById("go").addEventListener("click", () => {
+    const count = parseInt(document.getElementById("numButtons").value, 0);
+
+    if (!isNaN(count) && count >= MIN_BUTTONS && count <= MAX_BUTTONS) {
+        const game = new Game("buttonContainer");
+        game.startGame(count);
+    } else {
+        alert(MESSAGES.incorrectNumber);
+    }
+});
+
 
