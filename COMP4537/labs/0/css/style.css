@@ -1,3 +1,7 @@
+#buttonContainer button {
+    background-color: var(--button-color);
+}
+
 #buttonContainer button.visible {
     width: 10em;
     height: 5em;
@@ -11,6 +15,8 @@
     margin: 0.5em; 
     color: transparent;
     position: absolute;
+    left: var(--pos-x); 
+    top: var(--pos-y); 
 }
 
 #buttonContainer button.revealed {
@@ -19,6 +25,8 @@
     margin: 0.5em; 
     color: black;
     position: absolute;
+    left: var(--pos-x); 
+    top: var(--pos-y); 
 }
 
 label {

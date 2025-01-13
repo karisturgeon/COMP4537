@@ -4,10 +4,11 @@ const Colours = [
     "#6495ED", //Cornflower Blue
     "#DC143C", //Crimson
     "#FFD700", //Gold
-    "#ADFF2F", //Green Yellow
     "#C71585", //Medium Violet Red
-    "40E0D0", //Turquoise
+    "#7CFC00", //Lawn Green
     "#FF6347", //Tomato
+    "#DA70D6", //Orchid
+    "#FFFFFF", //White
 ]
 
 function shuffleArray(array) {
@@ -29,8 +30,8 @@ class Button {
     createButton() {
         const button = document.createElement("button");
         button.innerHTML = this.number;
-        button.style.backgroundColor = this.color;
 
+        button.style.setProperty('--button-color', this.color);
         button.classList.add("visible");
 
         this.button = button;
@@ -90,8 +91,9 @@ class Game {
             button.makeClickable(this.playGame.bind(this));
             const randomX = Math.random() * 90;
             const randomY = Math.random() * 80 + 10;
-            button.button.style.left = `${randomX}%`;
-            button.button.style.top = `${randomY}%`;
+            button.button.style.setProperty('--pos-x', `${randomX}%`);
+            button.button.style.setProperty('--pos-y', `${randomY}%`);
+
         });
     }
 
