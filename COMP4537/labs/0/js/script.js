@@ -1,3 +1,14 @@
+/**
+ * Kari Sturgeon
+ * Lab 0
+ * ChatGPT was used to troubleshoot and bounce ideas off of for this Lab.
+ */
+
+
+
+/**
+ * Colours array for the buttons
+ */
 const Colours = [
     "#7FFFD4", // Aquamarine
     "#8A2BE2", // Blue Violet
@@ -11,6 +22,11 @@ const Colours = [
     "#FFFFFF", //White
 ]
 
+/**
+ * Function to shuffle an array
+ * @param array to be shuffled
+ * @returns shuffled array
+ */
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -19,12 +35,19 @@ function shuffleArray(array) {
     return array;
 }
 
+
+/**
+ * The Button class
+ * @param number the number of the button
+ * @param color the color of the button
+ * @param button the actually button element in the DOM
+ * @returns a button object and appends it to the container
+ */
 class Button {
     constructor(number, color, container) {
         this.number = number;
         this.color = color;
-        this.container = container;
-        this.button = null;
+        this.button = this.createButton();
     }
 
     createButton() {
@@ -33,9 +56,7 @@ class Button {
 
         button.style.setProperty('--button-color', this.color);
         button.classList.add("visible");
-
-        this.button = button;
-        this.container.appendChild(button);
+        return button;
     }
 
     hideNumber() {
@@ -56,6 +77,11 @@ class Button {
     }
 }
 
+
+/**
+ * The Game class
+ * Handles the game functions
+ */
 class Game {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
@@ -80,7 +106,7 @@ class Game {
         for (let i = 1; i <= count; i++) {
             const color = shuffledColours[i - 1];
             const button = new Button(i, color, this.container);
-            button.createButton();
+            this.container.appendChild(button.button);
             this.buttons.push(button);
         }
     }
