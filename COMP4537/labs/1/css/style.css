@@ -1,0 +1,13 @@
+.reader-note {
+    display: block; /* Makes the input a block-level element */
+    width: 90%; /* Optional: Adjusts the width to fill the container */
+    height: 100px;
+    margin-bottom: 10px; /* Adds spacing between textboxes */
+    padding: 5px; /* Optional: Adds padding for better appearance */
+    font-size: 16px; /* Adjust the font size */
+}
+.writer-note {
+    margin-bottom: 10px; /* Adds spacing between textboxes */
+    padding: 5px; /* Optional: Adds padding for better appearance */
+    font-size: 16px; /* Adjust the font size */
+}

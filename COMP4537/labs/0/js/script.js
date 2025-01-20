@@ -1,7 +1,7 @@
 /**
  * Kari Sturgeon
  * Lab 0
- * ChatGPT was used to troubleshoot and bounce ideas off of for this Lab.
+ * ChatGPT was used for this lab. (brainstorming, troubleshooting, refining the code, etc.)
  */
 
 const MIN_BUTTONS = 3;
@@ -10,7 +10,7 @@ const MAX_BUTTONS = 7;
 /**
  * Colours array for the buttons
  */
-const Colours = [
+const COLOURS = [
     "#7FFFD4", // Aquamarine
     "#8A2BE2", // Blue Violet
     "#6495ED", //Cornflower Blue
@@ -57,7 +57,7 @@ class Button {
         const button = document.createElement("button");
         button.innerHTML = `${this.number}`;
 
-        button.style.setProperty('--button-color', this.color);
+        button.style.setProperty("--button-color", this.color);
         button.classList.add("visible");
         return button;
     }
@@ -122,7 +122,7 @@ class Game {
         this.container.innerHTML = "";
         this.buttons = [];
 
-        const shuffledColours = shuffleArray(Colours);
+        const shuffledColours = shuffleArray(COLOURS);
         for (let i = 1; i <= count; i++) {
             const color = shuffledColours[i - 1];
             const button = new Button(i, color, this.container);
