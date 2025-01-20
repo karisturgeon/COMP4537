@@ -9,6 +9,7 @@
 }
 
 .reader-note-wrapper {
+    clear: both;
     width: 100%;
     align-items: center; 
     margin: 20px; 
