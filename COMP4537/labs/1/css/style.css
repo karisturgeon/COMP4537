@@ -1,13 +1,83 @@
 .reader-note {
-    display: block; /* Makes the input a block-level element */
-    width: 90%; /* Optional: Adjusts the width to fill the container */
-    height: 100px;
-    margin-bottom: 10px; /* Adds spacing between textboxes */
-    padding: 5px; /* Optional: Adds padding for better appearance */
-    font-size: 16px; /* Adjust the font size */
+    min-height: 96px;
+    resize: none;
+    overflow: auto;
+    width: 75%; 
+    margin: 10px;
+    padding: 5px; 
+    font-size: 16px; 
 }
+
+.reader-note-wrapper {
+    width: 100%;
+    align-items: center; 
+    margin: 20px; 
+}
+
+.writer-note-wrapper {
+    width: 100%;
+    display: flex; 
+    align-items: center; 
+    margin: 10px; 
+}
+
+
+
 .writer-note {
-    margin-bottom: 10px; /* Adds spacing between textboxes */
-    padding: 5px; /* Optional: Adds padding for better appearance */
-    font-size: 16px; /* Adjust the font size */
+    width: 75%;
+    margin: 10px;
+    font-size: 16px; 
+    padding: 5px;
+    min-height: 96px;
+    resize: none;
+}
+
+body {
+    text-align: center;
+    background-color: lavender;
+    padding: 10px; 
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    color: darkslategray;
+    margin: 30px;
+}
+
+h2 {
+    color: darkslategray;
+    margin: 20px;
+}
+
+.time-display {
+    padding-bottom: 10px;
+    float: right;
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: darkslategray;
+}
+
+#index-buttons {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    height: 100%; 
+    margin: 20px; 
+}
+
+#index-buttons button {
+    margin: 30px;
+    font-size: large;
+}
+
+#back-button {
+    left: 15px;
+    position: fixed;
+    bottom: 10px;
+    margin: 20px;
+}
+
+#add-note-button {
+    margin-right: 10em;
+    font-size: large;
 }
