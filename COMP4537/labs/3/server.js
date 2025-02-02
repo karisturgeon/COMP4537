@@ -2,7 +2,7 @@ let http = require(`http`);
 let url = require(`url`);
 const FileHandler = require("./modules/fileHandler");
 const DateHandler = require("./modules/utils");
-const MESSAGES = require("./modules/messages");
+const MESSAGES = require("./lang/en/en.js");
 
 const PORT = process.env.PORT || 3000;
 const HOST = "0.0.0.0";
