@@ -2,8 +2,7 @@ let http = require(`http`);
 let url = require(`url`);
 const FileHandler = require("./modules/fileHandler");
 const DateHandler = require("./modules/utils");
-
-const utils = require(`./modules/utils`);
+const MESSAGES = require("./modules/messages");
 
 const PORT = process.env.PORT || 3000;
 const HOST = "0.0.0.0";
