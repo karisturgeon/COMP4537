@@ -26,9 +26,9 @@ http.createServer((req, res) => {
         utils.writeFile(text, (status) => {
             res.writeHead(status, { 'Content-Type': 'text/html' });
             if (status == 500) {
-                res.write("Error appending to file");
+                res.write(`<h1>Error appending to file</h1>`);
             } else {
-                res.write("File appended successfully");
+                res.write(`<h1>File appended successfully</h1>`);
             }
             res.end();
         });
@@ -47,7 +47,7 @@ http.createServer((req, res) => {
             if (err) {
                 console.log("Error reading file: ", err);
                 res.writeHead(404, { 'Content-Type': 'text/html' });
-                res.write(`<h1>04 File Not Found: </h1>` + fileName);
+                res.write(`<h1>04 File Not Found: ` + fileName + `</h1>`);
             } else {
                 res.writeHead(200, { 'Content-Type': 'text/html' });
                 res.write(data);
@@ -62,4 +62,4 @@ http.createServer((req, res) => {
         res.end();
     }
 
-}).listen(PORT, HOST, () => console.log("Server running on http://localhost:3000"));
+}).listen(PORT, HOST, () => console.log("Server running"));
