@@ -2,6 +2,8 @@ let http = require(`http`);
 let url = require(`url`);
 const MESSAGES = require(`./lang/en/en`);
 const utils = require(`./modules/utils`);
+const PORT = process.env.PORT || 3000;
+const HOST = "0.0.0.0";
 
 http.createServer((req, res) => {
     const q = url.parse(req.url, true);
@@ -60,4 +62,4 @@ http.createServer((req, res) => {
         res.end();
     }
 
-}).listen(3000, () => console.log("Server running on http://localhost:3000"));
+}).listen(PORT, HOST, () => console.log("Server running on http://localhost:3000"));
