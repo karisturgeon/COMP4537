@@ -4,6 +4,8 @@
  * ChatGPT was used for this lab. (brainstorming, troubleshooting, refining the code, etc.)
  */
 
+
+
 const readerButton = document.getElementById('reader-button');
 const writerButton = document.getElementById('writer-button');
 const title = document.getElementById('title');

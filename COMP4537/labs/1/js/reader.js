@@ -4,6 +4,10 @@
  * ChatGPT was used for this lab. (brainstorming, troubleshooting, refining the code, etc.)
  */
 
+
+/**
+ * ReaderNote class
+ */
 class ReaderNote {
     constructor(text = "") {
         this.text = text;

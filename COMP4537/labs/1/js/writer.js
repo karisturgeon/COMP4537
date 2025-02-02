@@ -25,6 +25,7 @@ class Note {
         textbox.className = 'writer-note';
         textbox.addEventListener('input', (e) => {
             const index = notesArray.indexOf(this);
+            
             notesArray[index].text = e.target.value;
             saveNotes();
         });
