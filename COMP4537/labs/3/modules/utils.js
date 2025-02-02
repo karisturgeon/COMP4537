@@ -1,5 +1,5 @@
 const fs = require("fs");
-const filepath = ".";
+const filepath = "./";
 
 function getDate(name, MESSAGES) {
     const now = new Date();
@@ -17,7 +17,7 @@ function getDate(name, MESSAGES) {
 }
 
 function writeFile(text, callback) {
-    const filename = filepath + "/file.txt";
+    const filename = filepath + "file.txt";
     fs.appendFile(filename, text + "\n", (err) =>{
         if (err) {
             console.error("error appending to file: ", err);
