@@ -16,13 +16,13 @@ http.createServer((req, res) => {
     console.log("Request for:", q.pathname);
 
 
-    if (q.pathname === `/getDate/`) {
+    if (q.pathname.startsWith(`/COMP4537/labs/3/getDate/`)) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write(utils.getDate(name, MESSAGES));
         res.end();
     }
 
-    else if (q.pathname == `/writeFile/`) {
+    else if (q.pathname.startsWith(`/COMP4537/labs/3/writeFile/`)) {
         utils.writeFile(text, (status) => {
             res.writeHead(status, { 'Content-Type': 'text/html' });
             if (status == 500) {
@@ -34,7 +34,7 @@ http.createServer((req, res) => {
         });
     }
 
-    else if (q.pathname.startsWith(`/readFile/`)) {
+    else if (q.pathname.startsWith(`/COMP4537/labs/3/readFile/`)) {
         let parts = q.pathname.split("/");
         let fileName = parts.pop() || parts.pop(); 
     
