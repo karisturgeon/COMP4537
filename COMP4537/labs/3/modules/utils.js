@@ -1,5 +1,5 @@
 const fs = require("fs");
-const filepath = "./labs/3/";
+const filepath = ".";
 
 function getDate(name, MESSAGES) {
     const now = new Date();
