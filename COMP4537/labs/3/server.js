@@ -47,7 +47,7 @@ http.createServer((req, res) => {
             if (err) {
                 console.log("Error reading file: ", err);
                 res.writeHead(404, { 'Content-Type': 'text/html' });
-                res.write(q.pathname + " 404 not found");
+                res.write(`<h1>04 File Not Found: </h1>` + fileName);
             } else {
                 res.writeHead(200, { 'Content-Type': 'text/html' });
                 res.write(data);
